@@ -20,3 +20,11 @@ export interface ErrorResponseType<T = any, D = any> extends AxiosError {
   config?: InternalAxiosRequestConfig<D>;
   response?: AxiosResponse<T, D>;
 }
+
+export type SearchParams = {
+  page: number;
+  size: number;
+  search?: string;
+  sort?: string;
+  direction?: "ASC" | "DESC";
+};

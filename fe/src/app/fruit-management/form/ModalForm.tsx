@@ -84,8 +84,8 @@ const FruitManagementForm: React.FC<UserManagementFormProps> = (
   return (
     <ConfirmationModal
       open={isOpen}
-      title={isEditMode ? "Edit Fruit" : "Tambah Fruit"}
-      confirm={isEditMode ? "Edit" : "Tambah"}
+      title={isEditMode ? "Edit Fruit" : "Create New Fruit"}
+      confirm={isEditMode ? "Edit" : "Create"}
       cancel="Kembali"
       onConfirm={mutate}
       onClose={onClose}

@@ -632,54 +632,6 @@ body {
       }
     }
   }
-
-
-  .section-footer-mobile {
-    display: none;
-
-    @include lt-md {
-      background: #0B2250;
-      box-shadow: 2px 0px 4px 0px #F8F9FB;
-      color: #fff;
-      height: 100%;
-      position: relative;
-      padding: 30px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      .nav-link {
-        display: flex;
-        font-size: 12px;
-        font-weight: 700;
-        color: #F6F8FB;
-        margin-bottom: 12px;
-        transition: .3s;
-        padding: 13px 29px;
-        cursor: pointer;
-
-        .icon {
-          margin-right: 12px;
-        }
-
-        &:hover {
-          background-color: #18A0FB;
-          padding: 13px 29px;
-          border-radius: 10px;
-          transition: .3s;
-        }
-      }
-
-      .active {
-        background-color: #18A0FB;
-        padding: 8px 16px;
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-      }
-    }
-
-  }
 }
 
 .display-none {
@@ -1199,56 +1151,30 @@ body {
   }
 }
 
-.react-form-builder {
-  .form-input {
-    .group-container {
-      padding: 8px;
-    }
+.field-box {
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
 
-    .group-title {
-      font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
+  label {
+    font-size: 12px;
+    font-weight: 600;
+  }
 
-    .field-row {
-      display: flex;
-      flex-direction: row;
-      gap: 16px;
-    }
+  .form {
+    margin: 10px 0;
+    height: 41px;
+  }
 
-    .field-box {
-      margin-bottom: 16px;
-      display: flex;
-      flex-direction: column;
+  .input-search {
+    border-radius: 4px !important;
+    width: 300px;
+    margin-top: 8px;
+  }
 
-      label {
-        font-size: 12px;
-        font-weight: 600;
-      }
-
-      .form {
-        margin: 10px 0;
-        height: 41px;
-      }
-
-      .input-search {
-        border-radius: 4px !important;
-        width: 300px;
-        margin-top: 8px;
-      }
-
-      .err-message {
-        color: #d35a4f;
-        width: auto;
-      }
-    }
-
-    .button-custom {
-      margin-top: 50px;
-      margin-bottom: 20px;
-      width: 100%;
-    }
+  .err-message {
+    color: #d35a4f;
+    width: auto;
   }
 }
 

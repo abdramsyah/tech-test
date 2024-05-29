@@ -1,27 +1,49 @@
 "use client";
 
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import { Card, Table } from "antd";
+import {
+  DeleteOutlined,
+  EditOutlined,
+  SearchOutlined,
+} from "@ant-design/icons";
+import { Card, MenuProps, Pagination, Table } from "antd";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
-import { Button, Layout } from "../../components";
+import { Button, Input, Layout, SortDropdown } from "../../components";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ColumnsType } from "antd/es/table";
 import FruitManagementForm, { FruitType } from "./form/ModalForm";
-import Chip, { ChipTheme } from "@/components/Chip";
 import { useQuery } from "@tanstack/react-query";
 import { MUTATION_KEY, QUERY_KEY } from "@/api/queries/key";
 import { deleteFruit, getFruitList } from "@/api/queries/fetch";
 import { formatCurrency } from "@/util/commons";
 import DeleteModal from "@/components/Modal/DeleteModal";
+import { SearchParams } from "@/types/global";
+import useDebounce from "@/util/hooks/useDebounce";
 
-const userStatusTheme: { [K in "ACTIVE" | "INACTIVE"]: ChipTheme } = {
-  ACTIVE: "outlined-green",
-  INACTIVE: "outlined-red",
-};
+// const sortList = ["name", "price", 'created'];
+const sortList: {
+  title: string;
+  key: string;
+  dir: SearchParams["direction"];
+}[] = [
+  { title: "Name", key: "name", dir: "ASC" },
+  { title: "Name", key: "name", dir: "DESC" },
+  { title: "Color", key: "color", dir: "ASC" },
+  { title: "Color", key: "color", dir: "DESC" },
+  { title: "Price", key: "price", dir: "ASC" },
+  { title: "Price", key: "price", dir: "DESC" },
+  { title: "Stock", key: "stock", dir: "ASC" },
+  { title: "Stock", key: "stock", dir: "DESC" },
+  { title: "Created At", key: "created_at", dir: "ASC" },
+  { title: "Created At", key: "created_at", dir: "DESC" },
+  { title: "Updated At", key: "updated_at", dir: "ASC" },
+  { title: "Updated At", key: "updated_at", dir: "DESC" },
+];
 
-const UserManagement: React.FC = () => {
+const FruitManagement: React.FC = () => {
+  const debounce = useDebounce();
+
   const [deleteFruitModalCtrl, setDeleteFruitModalCtrl] = useState<
     | { open: false }
     | {
@@ -36,13 +58,29 @@ const UserManagement: React.FC = () => {
         data?: FruitType;
       }
   >({ open: false });
+  const [params, setParams] = useState<SearchParams>({
+    page: 1,
+    size: 10,
+  });
 
   const { data, isFetching, refetch } = useQuery({
-    queryFn: () => getFruitList(),
+    queryFn: () => getFruitList(params),
     queryKey: [QUERY_KEY.FUIRT_LIST],
     refetchInterval: 7200000,
     refetchOnWindowFocus: false,
   });
+
+  useEffect(() => {
+    refetch();
+  }, [params, refetch]);
+
+  const menu: MenuProps = {
+    items: sortList.map((e, i) => ({
+      key: i,
+      label: `${e.title} ${e.dir}`,
+      onClick: () => setParams({ ...params, sort: e.key, direction: e.dir }),
+    })),
+  };
 
   const columns: ColumnsType<FruitType> = [
     {
@@ -81,13 +119,6 @@ const UserManagement: React.FC = () => {
       title: "Updated At",
       dataIndex: "updated_at",
       render: (item) => <span> {moment(item).format("DD MMMM YYYY")}</span>,
-    },
-    {
-      title: "Status",
-      dataIndex: "status",
-      render: (item: "ACTIVE" | "INACTIVE") => (
-        <Chip theme={userStatusTheme[item]}>{item}</Chip>
-      ),
     },
     {
       title: "Action",
@@ -138,6 +169,7 @@ const UserManagement: React.FC = () => {
             title="Delete Fruit"
             isOpen={deleteFruitModalCtrl.open}
             onClose={() => setDeleteFruitModalCtrl({ open: false })}
+            onSuccess={refetch}
             param={deleteFruitModalCtrl.id}
             mutationFn={deleteFruit}
             mutationKey={MUTATION_KEY.FRUIT_DELETE}
@@ -146,10 +178,6 @@ const UserManagement: React.FC = () => {
       </>
     );
   };
-
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
 
   return (
     <Layout
@@ -165,6 +193,21 @@ const UserManagement: React.FC = () => {
       <ToastContainer autoClose={2000} hideProgressBar={true} />
 
       <Card className="card-box">
+        <div className="filter-search">
+          <Input
+            label="Search"
+            placeholder="Search"
+            prefix={<SearchOutlined />}
+            onChange={(e) =>
+              debounce(() =>
+                setParams({ ...params, page: 1, search: e.target.value })
+              )
+            }
+            allowClear
+            style={{ width: 250 }}
+          />
+          <SortDropdown sortData={menu} label="Urutkan" />
+        </div>
         <Table
           columns={columns}
           dataSource={data?.data.data.data || []}
@@ -173,10 +216,32 @@ const UserManagement: React.FC = () => {
           sticky
           scroll={{ y: `calc(88vh - 230px)` }}
         />
+
+        <div className="pagination">
+          <Pagination
+            current={data?.data.data?.currenPage}
+            total={data?.data.data.lastPage}
+            onChange={(page) =>
+              setParams({
+                ...params,
+                page: page,
+              })
+            }
+            pageSizeOptions={[10, 20, 50, 100, 200]}
+            showSizeChanger
+            onShowSizeChange={(_, size) =>
+              setParams((state) => ({
+                ...state,
+                page: 1,
+                size,
+              }))
+            }
+          />
+        </div>
       </Card>
       {renderModal()}
     </Layout>
   );
 };
 
-export default UserManagement;
+export default FruitManagement;
