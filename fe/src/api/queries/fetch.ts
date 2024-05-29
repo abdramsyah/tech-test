@@ -1,4 +1,4 @@
-import { SuccessResponseType, TableType } from "@/types/global";
+import { SearchParams, SuccessResponseType, TableType } from "@/types/global";
 import { httpClient } from "../httpClient";
 import { ENDPOINT } from "./endpoint";
 import { FruitType } from "@/app/fruit-management/form/ModalForm";
@@ -22,9 +22,10 @@ export const createFruit = (
 ): Promise<SuccessResponseType<unknown, any>> =>
   httpClient.post(ENDPOINT.FRUIT, payload);
 
-export const getFruitList = (): Promise<
-  SuccessResponseType<TableType<FruitType[]>, any>
-> => httpClient.get(ENDPOINT.FRUIT);
+export const getFruitList = (
+  params: SearchParams
+): Promise<SuccessResponseType<TableType<FruitType[]>, any>> =>
+  httpClient.get(ENDPOINT.FRUIT, { params });
 
 export const getFruitDetail = (
   id: number

@@ -2,8 +2,7 @@
 
 import styles from "./page.module.css";
 import { useRouter } from "next/navigation";
-import { useEffect, useMemo } from "react";
-import { STORAGE_KEY } from "@/constants/localStorageKey";
+import { useEffect } from "react";
 
 const Home: React.FC = () => {
   const router = useRouter();

@@ -73,6 +73,7 @@ const DeleteModal = <T,>(props: DeleteModalProps<T>) => {
       onConfirm={mutate}
       onClose={onClose}
       width={"230mm"}
+      cancelFocused
     >
       <CloseCircleFilled className="alertIcon" />
     </ConfirmationModal>
