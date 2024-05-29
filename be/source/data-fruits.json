@@ -1,0 +1,142 @@
+ [
+            {
+                "id": 23,
+                "name": "Alpukat Manis",
+                "color": "hijau",
+                "price": "170",
+                "stock": 190
+            },
+            {
+                "id": 2,
+                "name": "Banana edit",
+                "color": "Yellow",
+                "price": "0.50",
+                "stock": 200
+            },
+            {
+                "id": 13,
+                "name": "Banana edit 2",
+                "color": "Yellow",
+                "price": "0.50",
+                "stock": 200
+            },
+            {
+                "id": 18,
+                "name": "Blueberry",
+                "color": "Blue",
+                "price": "2.50",
+                "stock": 50
+            },
+            {
+                "id": 7,
+                "name": "Blueberry",
+                "color": "Blue",
+                "price": "2.50",
+                "stock": 50
+            },
+            {
+                "id": 15,
+                "name": "Grape",
+                "color": "Purple",
+                "price": "2.00",
+                "stock": 75
+            },
+            {
+                "id": 4,
+                "name": "Grape",
+                "color": "Purple",
+                "price": "2.00",
+                "stock": 75
+            },
+            {
+                "id": 21,
+                "name": "Kiwi",
+                "color": "Brown",
+                "price": "1.10",
+                "stock": 90
+            },
+            {
+                "id": 10,
+                "name": "Kiwi",
+                "color": "Brown",
+                "price": "1.10",
+                "stock": 90
+            },
+            {
+                "id": 5,
+                "name": "Mango",
+                "color": "Yellow",
+                "price": "1.20",
+                "stock": 120
+            },
+            {
+                "id": 16,
+                "name": "Mango",
+                "color": "Yellow",
+                "price": "1.20",
+                "stock": 120
+            },
+            {
+                "id": 3,
+                "name": "Orange",
+                "color": "Orange",
+                "price": "0.80",
+                "stock": 150
+            },
+            {
+                "id": 14,
+                "name": "Orange",
+                "color": "Orange",
+                "price": "0.80",
+                "stock": 150
+            },
+            {
+                "id": 20,
+                "name": "Pineapple",
+                "color": "Yellow",
+                "price": "1.00",
+                "stock": 80
+            },
+            {
+                "id": 9,
+                "name": "Pineapple",
+                "color": "Yellow",
+                "price": "1.00",
+                "stock": 80
+            },
+            {
+                "id": 6,
+                "name": "Strawberry",
+                "color": "Red",
+                "price": "1.80",
+                "stock": 60
+            },
+            {
+                "id": 17,
+                "name": "Strawberry",
+                "color": "Red",
+                "price": "1.80",
+                "stock": 60
+            },
+            {
+                "id": 1,
+                "name": "Updated Apple",
+                "color": "Green",
+                "price": "1.75",
+                "stock": 90
+            },
+            {
+                "id": 19,
+                "name": "Watermelon",
+                "color": "Green",
+                "price": "0.30",
+                "stock": 30
+            },
+            {
+                "id": 8,
+                "name": "Watermelon",
+                "color": "Green",
+                "price": "0.30",
+                "stock": 30
+            }
+]

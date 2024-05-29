@@ -1,0 +1,16 @@
+version: "3.3"
+services:
+  fruitilhamnext:
+    image: fruitilham/next:${WEB_VERSION}
+    container_name: fruitilham-next
+    restart: unless-stopped
+    build: .
+    ports:
+      - 3000:3000
+    networks:
+      - development
+
+networks:
+  development:
+    name: development
+    driver: bridge

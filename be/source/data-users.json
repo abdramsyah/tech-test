@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "email": "nadhifa.sofia0712@gmail.com",
+        "password": "Qwerty@123",
+        "full_name": " nadhifa.sofia071",
+        "is_login": false,
+        "createdAt": "2022-08-01T03:50:31.762Z",
+        "updatedAt": "2022-08-01T03:50:31.762Z"
+    },
+    {
+        "id": 2,
+        "full_name": "abdurrahman",
+        "email": "abdramsyah@gmail.com",
+        "password": "Qwerty@123",
+        "is_login": false,
+        "createdAt": "2022-08-01T03:51:27.781Z",
+        "updatedAt": "2022-08-01T03:51:27.781Z"
+    }
+]
